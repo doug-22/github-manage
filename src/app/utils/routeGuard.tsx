@@ -9,7 +9,8 @@ interface RouteGuardProps {
 }
 
 const PUBLIC_PATHS = [
-  "/"
+  "/",
+  "/login"
 ];
 
 export default function RouteGuard({children}: RouteGuardProps) {
