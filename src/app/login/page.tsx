@@ -62,14 +62,14 @@ export default function Login() {
     }
   }
 
-  useEffect(() => {
-    if (token) {
-      toast.success('Usuário já logado, redirecionando...')
-      setTimeout(() => {
-        router.push('/dashboard')
-      }, 1000)
-    }
-  }, [router])
+  // useEffect(() => {
+  //   if (token) {
+  //     toast.success('Usuário já logado, redirecionando...')
+  //     setTimeout(() => {
+  //       router.push('/dashboard')
+  //     }, 1000)
+  //   }
+  // }, [router])
 
   return (
     <Wrapper>
