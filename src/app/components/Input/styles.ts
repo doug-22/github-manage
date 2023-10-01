@@ -1,17 +1,13 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 interface InputProps {
-  width: string,
+  width: string
   height?: string
 }
 
 export const Wrapper = styled.div<InputProps>`
-  ${({
-    width,
-    height,
-    theme
-  }) => css`
-    width: ${width ?? "100%"};
+  ${({ width, height, theme }) => css`
+    width: ${width ?? '100%'};
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -24,7 +20,7 @@ export const Wrapper = styled.div<InputProps>`
 
     input {
       width: 100%;
-      height: ${height ?? "5.6rem"};
+      height: ${height ?? '5.6rem'};
       border-radius: 1rem;
       border: 1px solid ${theme.colors.placeholder};
 
@@ -32,7 +28,12 @@ export const Wrapper = styled.div<InputProps>`
       font-size: ${theme.font.sizes.small};
 
       padding-left: 1.5rem;
-    };
+    }
+    span {
+      font-size: ${theme.font.sizes.small};
+      font-weight: ${theme.font.bold};
+      color: ${theme.colors.error};
+    }
 
     &:disabled {
       background-color: ${theme.colors.gray};
