@@ -16,6 +16,13 @@ export const ContentForm = styled.div`
   align-items: center;
   gap: 2rem;
   margin: auto;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 `
 
 export const Title = styled.h1`
@@ -51,3 +58,5 @@ export const Divider = styled.div`
     }
   `}
 `
+
+export const ErrorMessage = styled.span``
