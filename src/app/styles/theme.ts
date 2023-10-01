@@ -18,6 +18,7 @@ export default {
   colors: {
     primary: 'rgba(63, 113, 240, 1)',
     secondary: 'rgba(38, 226, 113, 1)',
+    error: 'rgba(209, 23, 23, 1)',
     background: 'rgba(252, 252, 252, 1)',
     grayFont: 'rgba(102, 102, 102, 1)',
     gray: 'gray',
