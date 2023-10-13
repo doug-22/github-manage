@@ -8,6 +8,7 @@ export default function Button({
   onClick,
   disabled,
   $background = 'primary',
+  icon,
 }: ButtonProps) {
   return (
     <WrapperButton
@@ -17,7 +18,7 @@ export default function Button({
       disabled={disabled}
       $background={$background}
     >
-      {label}
+      {label} {icon && icon}
     </WrapperButton>
   )
 }
