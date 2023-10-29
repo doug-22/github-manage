@@ -1,6 +1,5 @@
-import api, { apiGetAccesToken } from '@/app/services/api'
+import { apiGetAccesToken } from '@/app/services/api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 
 export const getAccessToken = createAsyncThunk(
   'auth/getAccessToken',
