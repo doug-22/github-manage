@@ -5,14 +5,20 @@ export interface AuthState {
   loadingGetAccessToken: boolean
 }
 
+export interface UserState {
+  username: string
+  loadingUsername: boolean
+}
+
 export interface ButtonProps {
   label?: string
   width?: string
   height?: string
   onClick?: () => void
   disabled?: boolean
-  $background?: 'primary' | 'secondary' | 'transparent' | 'outline'
+  $background?: 'primary' | 'secondary' | 'transparent' | 'outline' | 'warning'
   icon?: ReactNode
+  type?: 'button' | 'reset' | 'submit'
 }
 
 export interface InputProps {
@@ -35,7 +41,7 @@ export interface ActionPayload {
 }
 
 export interface FilterAndOrderProps {
-  value: string
+  value: 'stars' | 'forks' | 'openIssues' | 'age' | 'lastCommit'
   label: string
 }
 
@@ -57,4 +63,49 @@ export interface FiltersProps {
   viewFavorites: boolean
   darkMode: boolean
   dashboardMode: 'cards' | 'list'
+}
+
+export interface ModalProps {
+  title: 'Delele repository' | null
+  isOpen: boolean
+}
+
+interface LicenseProps {
+  key: string
+  name: string
+}
+
+export interface RepoInfoProps {
+  id: number
+  name: string
+  stargazers_count: number
+  forks_count: number
+  open_issues_count: number
+  created_at: string
+  pushed_at: string
+  license: null | LicenseProps
+  language: string
+  favorite: boolean
+}
+
+export interface RepoInfoFormatedProps {
+  id: number
+  name: string
+  stars: number
+  forks: number
+  openIssues: number
+  age: string
+  lastCommit: string
+  license: null | LicenseProps
+  language: string
+  favorite: boolean
+}
+
+export interface DashboardState {
+  repo: RepoInfoProps | null
+  loadingRepo: boolean
+
+  seletedRepo: RepoInfoFormatedProps | null
+
+  repos: Array<RepoInfoFormatedProps>
 }

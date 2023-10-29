@@ -19,6 +19,7 @@ export default {
     primary: 'rgba(63, 113, 240, 1)',
     secondary: 'rgba(38, 226, 113, 1)',
     error: 'rgba(209, 23, 23, 1)',
+    warning: 'rgba(185, 80, 0, 1)',
     background: 'rgba(252, 252, 252, 1)',
     grayFont: 'rgba(102, 102, 102, 1)',
     gray: 'gray',
@@ -34,5 +35,7 @@ export default {
     borderinputSearch: 'rgba(128, 172, 255, 1)',
     outline: 'rgba(205, 206, 217, 1)',
     dark: 'rgba(39, 40, 51, 1)',
+    darkModal: 'rgba(57, 58, 74, 0.5)',
+    orange: 'rgba(255, 244, 236, 1)',
   },
 } as const

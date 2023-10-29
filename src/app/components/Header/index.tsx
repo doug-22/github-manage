@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   AiFillGithub,
   AiOutlineStar,
@@ -34,6 +34,13 @@ import {
   handleViewFavorites,
 } from '@/app/store/filters'
 import Input from '../Input'
+import { getRepo } from '@/app/store/actions/dashboardActions'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+
+interface RepoProps {
+  repoName: string
+}
 
 export default function Header() {
   const theme = useTheme()
@@ -42,10 +49,22 @@ export default function Header() {
   const { filterAndOrder, search, viewFavorites, darkMode, dashboardMode } =
     useAppSelector((state) => state.filters)
 
+  const { repos } = useAppSelector((state) => state.dashboard)
+
+  const {
+    handleSubmit,
+    register,
+    watch,
+    setError,
+    setValue,
+    clearErrors,
+    formState: { errors },
+  } = useForm<RepoProps>()
+
+  const [repoName] = watch(['repoName'])
+
   const [viewDashboardMode, setViewDashboardMode] = useState(false)
   const [openModalAddRepository, setOpenModalAddRepository] = useState(false)
-
-  const [nameRepository, setNameRepository] = useState('')
 
   const handleSelectDashboardMode = (item: ViewDashboardOptionProps) => {
     dispatch(handleDashboardMode(item.value))
@@ -53,9 +72,30 @@ export default function Header() {
   }
 
   const handleOpenModalAddRepository = useCallback(() => {
-    setNameRepository('')
+    setValue('repoName', '')
+    clearErrors()
     setOpenModalAddRepository(!openModalAddRepository)
   }, [openModalAddRepository])
+
+  const onSubmit: SubmitHandler<RepoProps> = useCallback(
+    async (data) => {
+      if (repos?.find((item) => item?.name === data.repoName)) {
+        setError('repoName', { message: 'Repositório duplicado!' })
+        return
+      }
+      const response = await dispatch(getRepo(data))
+      if (response.meta.requestStatus === 'fulfilled') {
+        toast.success('Repositório adicionado com sucesso!')
+        setOpenModalAddRepository(!openModalAddRepository)
+      }
+      if (response.meta.requestStatus === 'rejected') {
+        setError('repoName', {
+          message: response.payload.response.data.message,
+        })
+      }
+    },
+    [repos],
+  )
 
   return (
     <WrapperHeader>
@@ -131,35 +171,39 @@ export default function Header() {
         />
         {openModalAddRepository && (
           <ModalAddRepository>
-            <div className="wrapper-input">
-              <h2>New repository</h2>
-              <Input
-                $typeInput="home"
-                placeholder="Repository name"
-                width="100%"
-                onChange={(e) => setNameRepository(e.target.value)}
-                label="Repository"
-                id="repository"
-                errorMessage="adadada"
-                required
-              />
-            </div>
-            <div className="wrapper-buttons">
-              <Button
-                width="7.2rem"
-                height="3.2rem"
-                label="Cancel"
-                $background="outline"
-                onClick={handleOpenModalAddRepository}
-              />
-              <Button
-                width="7.2rem"
-                height="3.2rem"
-                label="Add"
-                disabled={nameRepository.length === 0}
-                onClick={() => console.log(nameRepository)}
-              />
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="wrapper-input">
+                <h2>New repository</h2>
+                <Input
+                  $typeInput="home"
+                  placeholder="Repository name"
+                  width="100%"
+                  label="Repository"
+                  register={register}
+                  id="repoName"
+                  errorMessage={errors.repoName?.message}
+                  required
+                />
+              </div>
+              <div className="wrapper-buttons">
+                <Button
+                  width="7.2rem"
+                  height="3.2rem"
+                  label="Cancel"
+                  $background="outline"
+                  onClick={handleOpenModalAddRepository}
+                />
+                <Button
+                  width="7.2rem"
+                  height="3.2rem"
+                  label="Add"
+                  disabled={
+                    !!(repoName?.length === 0 || errors.repoName?.message)
+                  }
+                  type="submit"
+                />
+              </div>
+            </form>
           </ModalAddRepository>
         )}
       </WrapperAddRepository>

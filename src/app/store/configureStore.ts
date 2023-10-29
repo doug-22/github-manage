@@ -1,10 +1,16 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import auth from './auth'
 import filters from './filters'
+import user from './user'
+import dashboard from './dashboard'
+import modal from './modal'
 
 const reducer = combineReducers({
   auth,
   filters,
+  user,
+  dashboard,
+  modal,
 })
 
 const store = configureStore({

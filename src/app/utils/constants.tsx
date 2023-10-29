@@ -6,9 +6,9 @@ import theme from '../styles/theme'
 export const optionsFilterAndOrder: Array<FilterAndOrderProps> = [
   { value: 'stars', label: 'Stars' },
   { value: 'forks', label: 'Forks' },
-  { value: 'open issues', label: 'Open Issues' },
+  { value: 'openIssues', label: 'Open Issues' },
   { value: 'age', label: 'Age' },
-  { value: 'last commit', label: 'Last Commit' },
+  { value: 'lastCommit', label: 'Last Commit' },
 ]
 
 export const viewDashboardOptions: Array<ViewDashboardOptionProps> = [
