@@ -62,14 +62,14 @@ export default function Login() {
     }
   }
 
-  // useEffect(() => {
-  //   if (token) {
-  //     toast.success('Usuário já logado, redirecionando...')
-  //     setTimeout(() => {
-  //       router.push('/dashboard')
-  //     }, 1000)
-  //   }
-  // }, [router])
+  useEffect(() => {
+    if (token) {
+      toast.success('Usuário já logado, redirecionando...')
+      setTimeout(() => {
+        router.push('/dashboard')
+      }, 1000)
+    }
+  }, [router])
 
   return (
     <Wrapper>
@@ -97,7 +97,12 @@ export default function Login() {
               errors.name?.type === 'required' && 'Favor informar o seu nome'
             }
           />
-          <Button label="Entrar" $background="secondary" width="100%" />
+          <Button
+            label="Entrar"
+            type="submit"
+            $background="secondary"
+            width="100%"
+          />
         </form>
       </ContentForm>
     </Wrapper>

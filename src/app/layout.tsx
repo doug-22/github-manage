@@ -9,6 +9,7 @@ import GlobalStyles from './styles/global'
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Modals from './components/Modals'
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
             <GlobalStyles />
             <RouteGuard>{children}</RouteGuard>
             <ToastContainer theme="dark" bodyStyle={{ fontSize: '14px' }} />
+            <Modals />
           </body>
         </html>
       </Provider>
