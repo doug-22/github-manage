@@ -4,7 +4,7 @@ interface ButtonProps {
   width?: string
   height?: string
   disabled?: boolean
-  $background: 'primary' | 'secondary' | 'transparent' | 'outline'
+  $background: 'primary' | 'secondary' | 'transparent' | 'outline' | 'warning'
 }
 
 const colorModifier = {
@@ -33,6 +33,14 @@ const colorModifier = {
     border: 0.1rem solid ${theme.colors.outline};
     &:hover {
       background-color: rgba(39, 40, 51, 0.04);
+    }
+  `,
+  warning: (theme: DefaultTheme) => css`
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.warning};
+    border: 0.1rem solid ${theme.colors.warning};
+    &:hover {
+      box-shadow: 0 0 6px ${theme.colors.warning};
     }
   `,
 }
