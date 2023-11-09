@@ -29,5 +29,9 @@ export const Input = styled.input`
       background-color: ${theme.colors.backgroundInputSearch};
       border: 0.1rem solid ${theme.colors.borderinputSearch} !important;
     }
+
+    &::placeholder {
+      color: ${theme.colors.grayFont};
+    }
   `}
 `
