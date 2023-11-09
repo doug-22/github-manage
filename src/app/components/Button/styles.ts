@@ -36,7 +36,7 @@ const colorModifier = {
     }
   `,
   warning: (theme: DefaultTheme) => css`
-    color: ${theme.colors.white};
+    color: ${theme.colors.background};
     background-color: ${theme.colors.warning};
     border: 0.1rem solid ${theme.colors.warning};
     &:hover {
@@ -54,7 +54,7 @@ export const WrapperButton = styled.button<ButtonProps>`
     cursor: pointer;
     transition: all ease 0.3s;
 
-    color: ${theme.colors.white};
+    color: ${theme.colors.background};
     font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.bold};
 

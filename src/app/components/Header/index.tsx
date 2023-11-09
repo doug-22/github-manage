@@ -18,10 +18,7 @@ import {
 import { useTheme } from 'styled-components'
 import Button from '../Button'
 import { SelectComponent } from '../Select'
-import {
-  optionsFilterAndOrder,
-  viewDashboardOptions,
-} from '@/app/utils/constants'
+import { optionsFilterAndOrder } from '@/app/utils/constants'
 import { ViewDashboardOptionProps } from '@/app/types'
 import InputSearch from '../InputSearch'
 import useAppDispatch from '@/app/hooks/useAppDispatch'
@@ -37,6 +34,8 @@ import Input from '../Input'
 import { getRepo } from '@/app/store/actions/dashboardActions'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { PiListFill } from 'react-icons/pi'
+import { MdDashboard } from 'react-icons/md'
 
 interface RepoProps {
   repoName: string
@@ -46,7 +45,7 @@ export default function Header() {
   const theme = useTheme()
   const dispatch = useAppDispatch()
 
-  const { filterAndOrder, search, viewFavorites, darkMode, dashboardMode } =
+  const { filterAndOrder, search, viewFavorites, dashboardMode } =
     useAppSelector((state) => state.filters)
 
   const { repos } = useAppSelector((state) => state.dashboard)
@@ -97,6 +96,19 @@ export default function Header() {
     [repos],
   )
 
+  const viewDashboardOptions: Array<ViewDashboardOptionProps> = [
+    {
+      icon: <MdDashboard size={30} color={theme.colors.grayFont} />,
+      label: 'Cards',
+      value: 'cards',
+    },
+    {
+      icon: <PiListFill size={30} color={theme.colors.grayFont} />,
+      label: 'List',
+      value: 'list',
+    },
+  ]
+
   return (
     <WrapperHeader>
       <AiFillGithub size={50} color={theme.colors.grayFont} />
@@ -119,7 +131,7 @@ export default function Header() {
         width="40px"
         height="40px"
         $background="transparent"
-        onClick={() => dispatch(handleViewFavorites(!viewFavorites))}
+        onClick={() => dispatch(handleViewFavorites())}
         icon={
           viewFavorites ? (
             <AiFillStar size={25} color={theme.colors.grayFont} />
@@ -133,7 +145,7 @@ export default function Header() {
         height="40px"
         $background="transparent"
         icon={<VscColorMode size={25} color={theme.colors.grayFont} />}
-        onClick={() => dispatch(handleDarkMode(!darkMode))}
+        onClick={() => dispatch(handleDarkMode())}
       />
 
       <WrapperSelectView>
@@ -166,7 +178,7 @@ export default function Header() {
         <Button
           width="40px"
           height="40px"
-          icon={<AiOutlinePlus size={25} color={theme.colors.white} />}
+          icon={<AiOutlinePlus size={25} color={theme.colors.background} />}
           onClick={handleOpenModalAddRepository}
         />
         {openModalAddRepository && (

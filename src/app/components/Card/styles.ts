@@ -42,6 +42,10 @@ export const Header = styled.div<{ type: 'list' | 'cards' }>`
   ${({ theme, type }) => css`
     ${!!type && headerModifier[type](theme)}
 
+    h2 {
+      color: ${theme.colors.black};
+    }
+
     .content-buttons {
       display: flex;
       gap: 1rem;
@@ -80,6 +84,7 @@ export const Body = styled.div<{ type: 'list' | 'cards' }>`
 
     p {
       font-size: ${theme.font.sizes.small};
+      color: ${theme.colors.black};
     }
 
     ${!!type && cardModifier[type](theme)}
