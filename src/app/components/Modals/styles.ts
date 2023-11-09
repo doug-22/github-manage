@@ -52,6 +52,7 @@ export const BodyModalDetele = styled.div`
     border-bottom: 1px solid ${theme.colors.darkModal};
     p {
       font-size: ${theme.font.sizes.medium};
+      color: ${theme.colors.black};
     }
   `}
 `

@@ -94,6 +94,10 @@ export const ModalAddRepository = styled.div`
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      h2 {
+        color: ${theme.colors.black};
+      }
     }
 
     .wrapper-buttons {
